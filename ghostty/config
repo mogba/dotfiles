@@ -1,0 +1,5 @@
+# Config file is located on $HOME/.config/ghostty/config
+
+theme = Batman
+background-opacity = 0.9
+cursor-style = block
