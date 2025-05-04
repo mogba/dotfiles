@@ -1,0 +1,43 @@
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="steeef"
+
+CASE_SENSITIVE="false"
+HYPHEN_INSENSITIVE="true"
+
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' frequency 13
+
+ENABLE_CORRECTION="true"
+
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+HIST_STAMPS="dd.mm.yyyy"
+
+plugins=(git asdf)
+plugins=(git)
+
+# oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# Aliases
+
+source /opt/asdf-vm/asdf.sh
+. "/home/prehysterik/.asdf/installs/rust/1.84.0/env"
+
+# SSH Key configuration
+# eval $(ssh-agent)
+# # After installing keychain, the following lines should be executed
+# /usr/bin/keychain --nogui ~/.ssh/id_rsa # id_rsa: Check if the name corresponds with your ssh key's name
+# source $HOME/.keychain/ebonyblade-sh # You can get the hostname (computer's name) by running "cat /etc/hostname" 
+
+# Mount code.vhdx into '/mnt/wsl/code' folder if it isn't already mounted
+if [ ! -d /mnt/wsl/code ]; then
+  wslDistroLocation=$(powershell.exe -Command "(Get-ChildItem 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss' | Where-Object { \$_.GetValue('DistributionName') -eq 'Arch' }).GetValue('BasePath')" | tr -d '\r' | sed 's|\\\\?\\||')
+  wsl.exe --mount --vhd "$wslDistroLocation\\..\\code.vhdx" --name code
+  
+  rm ~/code
+  ln -s /mnt/wsl/code ~/code
+fi
