@@ -1,0 +1,15 @@
+[terminal]
+shell = { program = "wsl.exe ~" }
+
+[font]
+normal = { family = "MesloLGS NF", style = "Regular" }
+bold = { family = "MesloLGS NF", style = "Bold" }
+italic = { family = "MesloLGS NF", style = "Italic" }
+bold_italic = { family = "MesloLGS NF", style = "Bold Italic" }
+
+[window]
+padding = { x = 20, y = 20 }
+dynamic_padding = true
+decorations = "None"
+opacity = 0.9
+startup_mode = "Windowed"
